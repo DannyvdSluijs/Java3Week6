@@ -7,7 +7,8 @@
  */
 package models;
 
-public interface Goed {
+public interface Goed
+{
 
     public double getWaarde();
 }

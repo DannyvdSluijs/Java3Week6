@@ -6,9 +6,11 @@
  * @copyright 2012 Danny van der Sluijs
  */
 package models;
+import java.io.*;
 import java.util.*;
 
 public class Eigenaar
+    implements Serializable
 {
 
     private String naam = "";
@@ -71,4 +73,38 @@ public class Eigenaar
             "en bezit de volgende goederen:\n" + this.getGoederen();
     }
 
+    /**
+     * 
+     * @param filename
+     * @throws IOException 
+     */
+    public void saveToFile(String filename) throws IOException
+    {
+        FileOutputStream fileOutputStream = new FileOutputStream(filename);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+        objectOutputStream.writeObject(this);
+
+        objectOutputStream.close();
+    }
+    
+    /**
+     * 
+     * @param filename
+     * @return Eigenaar
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
+    public static Eigenaar readFromFile(String filename)throws IOException, ClassNotFoundException
+    {
+        Eigenaar eigenaar;
+        FileInputStream fileInputStream = new FileInputStream(filename);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        
+        eigenaar = (Eigenaar) objectInputStream.readObject();
+        
+        objectInputStream.close();
+        
+        return eigenaar;
+    }
 }

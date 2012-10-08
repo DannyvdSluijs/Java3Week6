@@ -7,8 +7,10 @@
  */
 package models;
 
+import java.io.Serializable;
+
 public abstract class Voertuig
-    implements Goed
+    implements Goed, Serializable
 {
     private String merk = "";
 

@@ -7,9 +7,10 @@
  */
 package models;
 import java.util.Calendar;
+import java.io.*;
 
 public class Computer
-    implements Goed
+    implements Goed, Serializable
 {
 
     private String merk = "";
